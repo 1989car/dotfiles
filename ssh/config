@@ -1,0 +1,8 @@
+#GlobalConfig
+ControlMaster auto
+ControlPath ~/.ssh/sockets/%r@%h-%p
+ControlPersist 360
+ServerAliveCountMax 3
+ServerAliveInterval 10
+Compression yes
+AddressFamily inet
