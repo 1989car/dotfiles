@@ -1,3 +1,6 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "autopac"]
+	path = autopac
+	url = https://github.com/1989car/AutoPAC.git
