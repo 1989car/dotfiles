@@ -1,0 +1,39 @@
+[user]
+    email       = haojia.che@outlook.com
+    name        = Oishi
+    signingkey  = D1E3E3C185420EA1
+
+[core]
+    editor      = vim
+
+[commit]
+	gpgsign     = true
+
+[merge]
+    tool        = vimdiff
+
+[color]
+    ui          = auto
+    diff        = auto
+    branch      = auto
+    status      = auto
+    interactive = auto
+
+[alias]
+    co          = checkout
+    cm          = commit
+    s           = status -sb
+    st          = status
+    p           = push
+    tags        = tag    -l
+    branches    = branch -a
+    remotes     = remote -v
+    lg          = log    --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[credential]
+    helper      = store
+[help]
+    autocorrect = 1
+[gc]
+	autoDetach  = false
+    

@@ -1,0 +1,26 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.zshrc: zsh/zshrc
+    ~/.ssh/config: ssh/config
+    ~/.gitconfig: git/gitconfig
+
+- create:
+  - ~/.zinit
+
+- shell:
+  - 
+      description: Installing submodules
+      command: git submodule update --init --recursive
+  - 
+      description: Installing Zinit
+      command: 
+          # rm -rf ~/.zinit
+          git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+          
+          
