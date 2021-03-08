@@ -1,7 +1,7 @@
 [user]
-    email       = haojia.che@outlook.com
-    name        = Oishi
-    signingkey  = D1E3E3C185420EA1
+	email = haojia.che@outlook.com
+	name = Oishi
+	signingkey = 5FA2AC4BF8C92159
 
 [core]
     editor      = vim
@@ -37,3 +37,5 @@
 [gc]
 	autoDetach  = false
     
+[gpg]
+	program = /usr/bin/gpg2

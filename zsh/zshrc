@@ -7,13 +7,19 @@ fi
 
 source ~/.zinit/bin/zinit.zsh
 
+# 加载 powerlevel10k 主题
+zinit ice depth=1; zinit load romkatv/powerlevel10k
+# zinit light denysdovhan/spaceship-prompt
+
 # 快速目录跳转
 zinit ice lucid wait='1'
 zinit light skywind3000/z.lua
 
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
+      Aloxaf/fzf-tab \
       zdharma/fast-syntax-highlighting \
+      zsh-users/zsh-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
@@ -26,14 +32,24 @@ zinit wait lucid nocd depth=1 \
 zinit ice lucid wait
 zinit light zdharma/history-search-multi-word
 
-zinit load zpm-zsh/ssh
-zinit load rbirnie/oh-my-zsh-keybase
-zinit load felixr/docker-zsh-completion
+zinit ice lucid wait for \
+  zpm-zsh/ssh \
+  rbirnie/oh-my-zsh-keybase \
+  felixr/docker-zsh-completion
 
-zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/history.zsh
+
+zinit snippet OMZP::gitignore
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+zinit ice svn
+zinit snippet OMZ::plugins/extract
 
 zinit ice wait'1' lucid
 zinit light laggardkernel/zsh-thefuck
@@ -41,10 +57,47 @@ zinit light laggardkernel/zsh-thefuck
 zinit ice proto'git' pick'init.sh'
 zinit light b4b4r07/enhancd
 
-zinit ice depth=1; zinit load romkatv/powerlevel10k
-# zinit light denysdovhan/spaceship-prompt
+zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zinit light sharkdp/bat
+
+# 加载它们的补全等
+
+zinit ice mv="*.zsh -> _fzf" as="completion"
+zinit snippet 'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
+zinit snippet 'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh'
+zinit ice as="completion"
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/fd/_fd'
+zinit ice mv="*.zsh -> _exa" as="completion"
+zinit snippet 'https://github.com/ogham/exa/tree/master/completions/completions.zsh'
+# ---- 加载完了 ----
+
+alias ls='lsd'
+
+
+export PATH="$PATH:/home/dev/golang/bin"
+export GOPROXY="https://goproxy.cn,direct"
+
+#alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  --cache=$HOME/.npm/.cache/cnpm \
+  --disturl=https://npm.taobao.org/dist \
+  --userconfig=$HOME/.cnpmrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias ls='lsd'
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

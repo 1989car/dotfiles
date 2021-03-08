@@ -9,6 +9,7 @@
     ~/.zshrc: zsh/zshrc
     ~/.ssh/config: ssh/config
     ~/.gitconfig: git/gitconfig
+    ~/.local/share/fcitx5/rime: rime
 
 - create:
   - ~/.zinit
